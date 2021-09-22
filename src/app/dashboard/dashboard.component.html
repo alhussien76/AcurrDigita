@@ -1,0 +1,82 @@
+<!-- Navigation Bar -->
+<nav class="navbar navbar-light bg-nav-bar">
+    <a class="navbar-brand font-dubai-bold" href="#">Dashboard</a>
+    <div class="navbar">
+        <div class=" d-flex font-dubai-light">
+            <a class="nav-item nav-link active px-1" routerLink="/" routerLinkActive="text-black"
+                [routerLinkActiveOptions]="{exact:true}">Home </a>
+            <p class="mt-2">/</p>
+            <a class="nav-item nav-link px-1" routerLink="/dashboard-v1" routerLinkActive="text-black">dashboard v1</a>
+        </div>
+    </div>
+</nav>
+<div class="container-fluid pt-5">
+    <div class="row">
+        <div class="col">
+            <!-- Tabs -->
+            <mat-tab-group>
+                <mat-tab label="Datasource">
+                    <ng-template matTabContent>
+                    </ng-template>
+                </mat-tab>
+                <mat-tab label="Graph Type">
+                    <ng-template matTabContent>
+                        <div class="container-fluid">
+                            <div class="col-12 pb-1 d-flex justify-content-end" style="padding-right: 39%;">
+                                <mat-icon matRipple class="m-1  rounded-circle pointer">save_alt</mat-icon>
+                                <mat-icon matRipple class="m-1  rounded-circle pointer" style="color: blue;">
+                                    file_copy
+                                </mat-icon>
+                                <mat-icon matRipple class="m-1  rounded-circle pointer" style="color: #c62d39;">
+                                    remove_circle
+                                </mat-icon>
+
+                            </div>
+                            <div class="row d-flex  gx-2 p-2 mat-elevation-z3 justify-content-around rounded-16 mb-1"
+                                style="height: 60vh; ">
+                                <div class="col-7 h-100 overflow-auto d-flex rounded">
+                                    <div class="row d-flex m-0 ">
+                                        <div matRipple *ngFor="let graph of graphs; let i= index"
+                                            (click)="selectedImageIndex=i ; togglePreview=true"
+                                            class="col-3 pointer d-flex p-2 mat-elevation-z2 justify-content-center mx-2 my-2  rounded ">
+                                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                                <img width="80%" height="70%" [src]="graph.path">
+                                                <mat-radio-button class="pt-2" [checked]="selectedImageIndex === i">
+                                                </mat-radio-button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Preview Section -->
+                                <div *ngIf="(graphs[selectedImageIndex].path) && (togglePreview === true)"
+                                    class="col-4  my-1  rounded mat-elevation-z2 d-flex flex-column">
+                                    <div class="col-12 d-flex border-bottom align-items-center ">
+                                        <div class="col-auto">
+
+                                            <mat-icon (click)="togglePreview=false" matRipple matTooltip="Minimize"
+                                                matTooltipPosition="above"
+                                                class="px-1 fs-6 pointer text-start  rounded mat-elevation-z3">
+                                                minimize</mat-icon>
+                                        </div>
+                                        <div class="col text-center font-dubai-regular ">
+                                            <span>Preview</span>
+                                        </div>
+                                    </div>
+                                    <div class="col d-flex align-items-center justify-content-center">
+                                        <img style="width: 50%; height: 40%;" class="img-fluid"
+                                            [src]="graphs[selectedImageIndex].path">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                </mat-tab>
+                <mat-tab label="properities">
+                    <ng-template matTabContent>
+                    </ng-template>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

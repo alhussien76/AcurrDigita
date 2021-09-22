@@ -1,0 +1,91 @@
+<div class="example-container" [ngClass]="{'example-is-mobile':(isHandset$ | async)}">
+
+    <mat-sidenav-container class="example-sidenav-container" autosize>
+        <mat-sidenav #snav [mode]="(isHandset$ | async) ? 'over' : 'side'" opened="true"
+            [fixedInViewport]="(isHandset$ | async)" class="bg-dark-gray">
+
+            <!-- user info -->
+            <div class="color-lightgrey d-flex  py-3 ">
+                <div class="row m-0">
+                    <div class="col-auto px-2">
+                        <img class="rounded-circle mat-elevation-z8" src="assets/uchiha-itachi.jpg" width="45px"
+                            height="45px" />
+                    </div>
+                    <div matLine *ngIf="isExpanded" class="col p-0 align-self-center">
+                        <p class="fs-6 m-0 font-dubai-regular ">Uchiha Itachi</p>
+                    </div>
+                </div>
+            </div>
+
+            <mat-divider></mat-divider>
+            <!-- searchBar -->
+            <div matLine *ngIf="isExpanded" class="color-lightgrey overflow-hidden">
+
+                <mat-form-field class="" appearance="standard">
+                    <mat-label class="color-lightgrey font-dubai-regular">Search</mat-label>
+                    <input class="" matInput type="text" [(ngModel)]="searchValue">
+                </mat-form-field>
+            </div>
+            <!-- dashboards -->
+            <mat-accordion matLine *ngIf="isExpanded">
+                <mat-expansion-panel [matTooltip]="isExpanded?'':'Dashboard'" matTooltipPosition="right"
+                    class=" min-content-width bg-dark-gray mb-1">
+                    <mat-expansion-panel-header class="pe-4 ps-12px">
+                        <mat-panel-title class="color-lightgrey mt-1 p-2">
+                            <mat-icon class="color-lightgrey fs-6">dashboard</mat-icon>
+                            <p class="m-0 font-dubai-medium">Dashboard</p>
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <div class="m-0 p-0 font-dubai-regular">
+                        <div [ngClass]="{'ps-4':isExpanded}" class="pointer rounded p-2 m-0  color-lightgrey " matRipple
+                            routerLink="/dashboard-v1" routerLinkActive="bg-lightgray text-black">
+                            Dashboard v1
+                        </div>
+                        <div [ngClass]="{'ps-4':isExpanded}" class="pointer p-2 ps-4 m-0  color-lightgrey " matRipple
+                            routerLink="/" routerLinkActive="bg-lightgray text-black"
+                            [routerLinkActiveOptions]="{exact:true}">
+                            Dashboard v2
+                        </div>
+                    </div>
+                </mat-expansion-panel>
+            </mat-accordion>
+            <!-- side navigation list -->
+            <div *ngFor="let sideNaveLink of (sideNaveLinks | searchByName:searchValue )"
+                (click)="navigateTo(sideNaveLink.name)">
+                <div class="pointer d-flex flex-row align-items-center color-lightgrey px-2 font-dubai-regular pt-2"
+                    [matTooltip]="isExpanded?'':sideNaveLink.name" matTooltipPosition="right" matRipple>
+                    <div class="row m-0 ">
+                        <div class="col-auto">
+                            <mat-icon class=" fs-6">{{sideNaveLink.iconName}}</mat-icon>
+                        </div>
+                        <div matLine *ngIf="isExpanded" class="col p-0">
+                            <p>{{sideNaveLink.name}}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <!-- toolbar -->
+            <mat-toolbar class=" mat-elevation-z2 position-fixed font-dubai-light h-3rem fs-6">
+                <button mat-icon-button (click)="toggleExpand()">
+
+                    <mat-icon>menu</mat-icon>
+                </button>
+                <nav class="navbar navbar-expand navbar-light">
+                    <div class="container-fluid">
+                        <div class="navbar-nav">
+                            <a class="nav-link " aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="#">Contact</a>
+                        </div>
+                    </div>
+                </nav>
+            </mat-toolbar>
+            <!-- content -->
+            <div class="mt-5 p-2">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
