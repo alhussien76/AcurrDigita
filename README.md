@@ -4,7 +4,7 @@ This project is deployed on firebase [AccurDigital](https://accurdigital-task.we
 
 # Features
 
-1- you can search for a nav item from the the side nav
+1- you can search for a navigation item from the the side navigation
 
 2- you can select a specific dashboard from the dashboard button
 
