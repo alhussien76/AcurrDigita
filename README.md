@@ -1,6 +1,6 @@
-# AccurDigital
+# Deployment
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.3.
+This project is deployed on firebase [AccurDigital](https://accurdigital-task.web.app/)
 
 ## Packages used
 
