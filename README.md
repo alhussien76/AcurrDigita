@@ -2,6 +2,12 @@
 
 This project is deployed on firebase [AccurDigital](https://accurdigital-task.web.app/)
 
+# Features
+
+1- you can search for a nav item from the the side nav
+2- you can select a specific dashboard from the dashboard button
+3- you can preview chart and close the preview window 
+
 ## Packages used
 
 Angular material - bootstrap5
